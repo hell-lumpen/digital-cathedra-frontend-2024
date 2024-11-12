@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Демонстрация различных значений display</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js"></script>
+</head>
+
+<body>
+	<h1>Типы элементов. Демонстрация свойств display</h1>
+
+	<nav>
+		<h2>Оглавление</h2>
+		<ul>
+            <li><a href="#common">Общие вопросы</a></li>
+			<li><a href="#block-elements">Блочные элементы</a></li>
+			<li><a href="#inline-elements">Строчные элементы</a></li>
+			<li><a href="#inline-block-elements">Блочно-строчные элементы</a></li>
+			<li><a href="#flexbox-elements">Flexbox</a></li>
+		</ul>
+	</nav>
+
+	<section id="common" class="theory">
+		<h2>Типы элементов в HTML и их использование</h2>
+		<p>В HTML элементы можно разделить на несколько типов: блочные элементы, строчные элементы и блочно-строчные элементы. Каждый тип имеет свои особенности и применение.</p>
+		<h3>1. Блочные элементы</h3>
+		<p>Блочные элементы занимают всю доступную ширину родительского элемента и всегда начинаются с новой строки. Они могут содержать другие блочные или строчные элементы.</p>
+		<h4>Примеры блочных элементов:</h4>
+		<ul>
+			<li><code>&lt;div&gt;</code> — контейнер для других элементов.</li>
+			<li><code>&lt;h1&gt; - &lt;h6&gt;</code> — заголовки разных уровней.</li>
+			<li><code>&lt;p&gt;</code> — абзац текста.</li>
+			<li><code>&lt;section&gt;</code> — раздел контента.</li>
+			<li><code>&lt;article&gt;</code> — независимая часть контента.</li>
+			<li><code>&lt;header&gt;</code> — заголовок секции или страницы.</li>
+			<li><code>&lt;footer&gt;</code> — нижний колонтитул секции или страницы.</li>
+		</ul>
+		<h4>Тонкости использования:</h4>
+		<ul>
+			<li>Блочные элементы удобно использовать для создания основной структуры страницы.</li>
+			<li>Они могут содержать другие элементы, что позволяет создавать вложенные структуры.</li>
+			<li>В отличие от строчных элементов, блочные элементы могут иметь установленные размеры, отступы и границы.</li>
+		</ul>
+		<h3>2. Строчные элементы</h3>
+		<p>Строчные элементы занимают только необходимую ширину для содержимого и не начинают с новой строки. Они могут содержать только строчные элементы.</p>
+		<h4>Примеры строчных элементов:</h4>
+		<ul>
+			<li><code>&lt;span&gt;</code> — используется для группировки строчных элементов.</li>
+			<li><code>&lt;a&gt;</code> — ссылка на другую страницу или ресурс.</li>
+			<li><code>&lt;strong&gt;</code> — выделяет важный текст (по умолчанию — жирный).</li>
+			<li><code>&lt;em&gt;</code> — выделяет текст (по умолчанию — курсив).</li>
+			<li><code>&lt;img&gt;</code> — вставляет изображение.</li>
+		</ul>
+		<h4>Тонкости использования:</h4>
+		<ul>
+			<li>Строчные элементы идеальны для форматирования текста внутри блочных элементов.</li>
+			<li>Они не влияют на поток документа, позволяя сохранять структуру страницы.</li>
+			<li>Стили, такие как отступы и размеры, применяются к ним с осторожностью, так как они могут нарушить поток.</li>
+		</ul>
+		<h3>3. Блочно-строчные элементы</h3>
+		<p>Блочно-строчные элементы комбинируют свойства блочных и строчных элементов. Они занимают только необходимую ширину, но могут иметь заданные размеры и отступы.</p>
+		<h4>Примеры блочно-строчных элементов:</h4>
+		<ul>
+			<li><code>&lt;img&gt;</code> — изображение, которое может иметь установленные размеры.</li>
+			<li><code>&lt;input&gt;</code> — поля ввода для формы.</li>
+			<li><code>&lt;button&gt;</code> — кнопка, которую можно нажать.</li>
+			<li><code>&lt;label&gt;</code> — метка для элемента формы.</li>
+		</ul>
+		<h4>Тонкости использования:</h4>
+		<ul>
+			<li>Блочно-строчные элементы удобны для создания интерактивных элементов, таких как кнопки и поля ввода.</li>
+			<li>Они позволяют задавать размеры и отступы, что делает их гибкими в дизайне.</li>
+			<li>Используйте блочно-строчные элементы, когда требуется сочетание свойств блочных и строчных элементов.</li>
+		</ul>
+		<h2>Сравнительная таблица по типам элементов в HTML</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Критерий</th>
+					<th>Блочные элементы</th>
+					<th>Строчные элементы</th>
+					<th>Блочно-строчные элементы</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Ширина</td>
+					<td>Занимают всю ширину родительского элемента</td>
+					<td>Занимают только необходимую ширину для содержимого</td>
+					<td>Занимают только необходимую ширину, но могут иметь заданные размеры</td>
+				</tr>
+				<tr>
+					<td>Начало новой строки</td>
+					<td>Всегда начинается с новой строки</td>
+					<td>Не начинает новую строку, остаются на одной строке с соседями</td>
+					<td>Не начинает новую строку, но может быть размещен в любом месте</td>
+				</tr>
+				<tr>
+					<td>Вложенность</td>
+					<td>Могут содержать блочные и строчные элементы</td>
+					<td>Могут содержать только строчные элементы</td>
+					<td>Могут содержать как блочные, так и строчные элементы</td>
+				</tr>
+				<tr>
+					<td>Применение стилей</td>
+					<td>Могут иметь размеры, отступы, границы и фон</td>
+					<td>Игнорируют ширину и высоту, могут иметь отступы</td>
+					<td>Могут иметь размеры, отступы, границы и фон</td>
+				</tr>
+				<tr>
+					<td>Гибкость</td>
+					<td>Менее гибкие в плане расположения и стилизации</td>
+					<td>Гибкие, но могут нарушать поток</td>
+					<td>Гибкие, сочетают свойства блочных и строчных элементов</td>
+				</tr>
+				<tr>
+					<td>Примеры</td>
+					<td>&lt;div&gt;, &lt;p&gt;, &lt;h1&gt; - &lt;h6&gt;</td>
+					<td>&lt;span&gt;, &lt;a&gt;, &lt;strong&gt;</td>
+					<td>&lt;img&gt;, &lt;input&gt;, &lt;button&gt;</td>
+				</tr>
+			</tbody>
+		</table>
+		<h3>Выводы</h3>
+		<p>Выбор между блочными, строчными и блочно-строчными элементами зависит от контекста использования:</p>
+		<ul>
+			<li><strong>Используйте блочные элементы</strong> для создания основной структуры страницы, когда необходимо выделить отдельные секции.</li>
+			<li><strong>Используйте строчные элементы</strong> для форматирования текста внутри блочных элементов, когда нужно сохранить структуру без переноса на новую строку.</li>
+			<li><strong>Используйте блочно-строчные элементы</strong> для создания интерактивных элементов и гибких макетов, когда требуется сочетание свойств обоих типов.</li>
+		</ul>
+	</section>
+	<!-- Теория о блочных элементах -->
+	<section id="block-elements" class="theory">
+		<h2>Блочные элементы (display: block)</h2>
+		<p>Блочные элементы занимают всю ширину родителя и всегда начинаются с новой строки. К таким элементам можно применять размеры (width, height), а также настройки внешних и внутренних отступов (margin, padding). Блочные элементы подходят для структурных частей страницы, таких как заголовки, параграфы, разделы и контейнеры.</p>
+	</section>
+	<!-- Блочные элементы -->
+	<section class="display-block">
+		<h2>Пример использования display: block (Новости)</h2>
+		<div class="block-element">
+			<h3>Новость 1: Открытие нового парка</h3>
+			<p>Вчера в центре города открылся новый парк с велодорожками, игровыми площадками и зонами отдыха.</p>
+		</div>
+		<div class="block-element">
+			<h3>Новость 2: Летние скидки на путешествия</h3>
+			<p>Туристические агентства объявили скидки до 30% на летние путешествия по всему миру.</p>
+		</div>
+		<div class="block-element">
+			<h3>Новость 3: Открытие нового ресторана</h3>
+			<p>В центре города открывается новый ресторан с итальянской кухней и уютной атмосферой.</p>
+		</div>
+	</section>
+	<!-- Теория о строчных элементах -->
+	<section id="inline-elements" class="theory">
+		<h2>Строчные элементы (display: inline)</h2>
+		<p>Строчные элементы располагаются на одной строке друг с другом, занимая ровно столько места, сколько нужно содержимому. Они не реагируют на указанные размеры (width, height), и их нельзя выровнять по вертикали или задать отступы по вертикали. Строчные элементы часто используются для текста и ссылок.</p>
+	</section>
+	<!-- Строчные элементы -->
+	<section class="display-inline">
+		<h2>Пример использования display: inline (Полезные ссылки)</h2>
+		<p> <a href="#" class="inline-element">Контакты</a> <a href="#" class="inline-element">О компании</a> <a href="#" class="inline-element">Поддержка</a> <a href="#" class="inline-element">Новости</a> <a href="#" class="inline-element">Карьера</a> </p>
+	</section>
+	<!-- Теория о блочно-строчных элементах -->
+	<section id="inline-block-elements" class="theory">
+		<h2>Блочно-строчные элементы (display: inline-block)</h2>
+		<p>Блочно-строчные элементы ведут себя как строчные, располагаясь на одной строке, но при этом принимают размеры и отступы (width, height, margin, padding). Это позволяет создавать элементы, которые можно выстроить в строку, сохраняя гибкость управления их размером и внутренним содержимым. Они часто используются для создания карточек, кнопок и мини-контейнеров.</p>
+	</section>
+	<!-- Блочно-строчные элементы -->
+	<section class="display-inline-block">
+		<h2>Пример использования display: inline-block (Каталог товаров)</h2>
+		<div class="inline-block-element"> <img src="https://via.placeholder.com/100" alt="Товар 1">
+			<h4>Товар 1</h4>
+			<p>Цена: 1000 руб.</p>
+		</div>
+		<div class="inline-block-element"> <img src="https://via.placeholder.com/100" alt="Товар 2">
+			<h4>Товар 2</h4>
+			<p>Цена: 1500 руб.</p>
+		</div>
+		<div class="inline-block-element"> <img src="https://via.placeholder.com/100" alt="Товар 3">
+			<h4>Товар 3</h4>
+			<p>Цена: 1200 руб.</p>
+		</div>
+	</section>
+	<section id="flexbox-elements" class="theory">
+		<h2>Flexbox (display: flex)</h2>
+		<p>Flexbox используется для создания гибких макетов и позволяет выравнивать элементы в контейнере по оси. Flexbox подходит для адаптивных интерфейсов, где важно гибкое выравнивание и контроль за расположением элементов.</p>
+		<h3>Основные свойства Flexbox</h3>
+		<ul>
+			<li><strong>flex-direction:</strong> определяет направление основной оси. Значения:
+				<ul>
+					<li><code>row</code> — горизонтальное направление слева направо (по умолчанию).</li>
+					<li><code>row-reverse</code> — горизонтальное направление справа налево.</li>
+					<li><code>column</code> — вертикальное направление сверху вниз.</li>
+					<li><code>column-reverse</code> — вертикальное направление снизу вверх.</li>
+				</ul>
+			</li>
+			<li><strong>justify-content:</strong> выравнивает элементы вдоль основной оси. Часто используется для центровки или равномерного распределения пространства между элементами. Значения:
+				<ul>
+					<li><code>flex-start</code> — элементы прижаты к началу контейнера.</li>
+					<li><code>flex-end</code> — элементы прижаты к концу контейнера.</li>
+					<li><code>center</code> — элементы центрированы.</li>
+					<li><code>space-between</code> — элементы равномерно распределены с пустым пространством между ними.</li>
+					<li><code>space-around</code> — элементы равномерно распределены с равными отступами вокруг.</li>
+				</ul>
+			</li>
+			<li><strong>align-items:</strong> выравнивает элементы по поперечной оси (перпендикулярно <code>flex-direction</code>). Значения:
+				<ul>
+					<li><code>flex-start</code> — элементы выравниваются по началу поперечной оси.</li>
+					<li><code>flex-end</code> — элементы выравниваются по концу поперечной оси.</li>
+					<li><code>center</code> — элементы центрируются по поперечной оси.</li>
+					<li><code>baseline</code> — элементы выравниваются по линии текста.</li>
+					<li><code>stretch</code> — элементы растягиваются, занимая всю высоту контейнера.</li>
+				</ul>
+			</li>
+			<li><strong>flex-wrap:</strong> определяет, как обрабатываются элементы, если они не помещаются в контейнер. Значения:
+				<ul>
+					<li><code>nowrap</code> — элементы не переносятся и остаются в одной строке (по умолчанию).</li>
+					<li><code>wrap</code> — элементы переносятся на новую строку при необходимости.</li>
+					<li><code>wrap-reverse</code> — элементы переносятся на новую строку, но порядок строк обратный.</li>
+				</ul>
+			</li>
+			<li><strong>align-content:</strong> управляет выравниванием строк элементов по поперечной оси при переносе. Значения:
+				<ul>
+					<li><code>flex-start</code> — строки прижаты к началу контейнера.</li>
+					<li><code>flex-end</code> — строки прижаты к концу контейнера.</li>
+					<li><code>center</code> — строки центрируются по поперечной оси.</li>
+					<li><code>space-between</code> — строки равномерно распределяются с пустым пространством между ними.</li>
+					<li><code>space-around</code> — строки распределены с равными отступами вокруг.</li>
+					<li><code>stretch</code> — строки растягиваются, занимая всю доступную высоту контейнера.</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<!-- Панель управления -->
+	<section class="controls">
+		<h2>Настройки Flexbox контейнера</h2>
+		<div>
+			<label for="flex-direction">Направление (flex-direction):</label>
+			<select id="flex-direction" onchange="updateFlexbox()">
+				<option value="row">Row</option>
+				<option value="row-reverse">Row Reverse</option>
+				<option value="column">Column</option>
+				<option value="column-reverse">Column Reverse</option>
+			</select>
+		</div>
+		<div>
+			<label for="justify-content">Выравнивание по основной оси (justify-content):</label>
+			<select id="justify-content" onchange="updateFlexbox()">
+				<option value="flex-start">Flex Start</option>
+				<option value="flex-end">Flex End</option>
+				<option value="center">Center</option>
+				<option value="space-between">Space Between</option>
+				<option value="space-around">Space Around</option>
+				<option value="space-evenly">Space Evenly</option>
+			</select>
+		</div>
+		<div>
+			<label for="align-items">Выравнивание по поперечной оси (align-items):</label>
+			<select id="align-items" onchange="updateFlexbox()">
+				<option value="flex-start">Flex Start</option>
+				<option value="flex-end">Flex End</option>
+				<option value="center">Center</option>
+				<option value="baseline">Baseline</option>
+				<option value="stretch">Stretch</option>
+			</select>
+		</div>
+		<div>
+			<label for="flex-wrap">Перенос элементов (flex-wrap):</label>
+			<select id="flex-wrap" onchange="updateFlexbox()">
+				<option value="nowrap">No Wrap</option>
+				<option value="wrap">Wrap</option>
+				<option value="wrap-reverse">Wrap Reverse</option>
+			</select>
+		</div>
+		<div>
+			<label for="align-content">Выравнивание строк (align-content):</label>
+			<select id="align-content" onchange="updateFlexbox()">
+				<option value="flex-start">Flex Start</option>
+				<option value="flex-end">Flex End</option>
+				<option value="center">Center</option>
+				<option value="space-between">Space Between</option>
+				<option value="space-around">Space Around</option>
+				<option value="stretch">Stretch</option>
+			</select>
+		</div>
+	</section>
+	<!-- Flexbox контейнер -->
+	<section class="display-flex">
+		<h2>Flexbox контейнер</h2>
+		<div class="flex-container" id="flex-container">
+			<div class="flex-item"> <img src="https://via.placeholder.com/80" alt="Элемент 1">
+				<h3>Элемент 1</h3>
+				<p>Описание элемента 1. Используется flex для демонстрации.</p>
+			</div>
+			<div class="flex-item"> <img src="https://via.placeholder.com/80" alt="Элемент 2">
+				<h3>Элемент 2</h3>
+				<p>Описание элемента 2. Используется flex для демонстрации.</p>
+			</div>
+			<div class="flex-item"> <img src="https://via.placeholder.com/80" alt="Элемент 3">
+				<h3>Элемент 3</h3>
+				<p>Описание элемента 3. Используется flex для демонстрации.</p>
+			</div>
+			<div class="flex-item"> <img src="https://via.placeholder.com/80" alt="Элемент 4">
+				<h3>Элемент 4</h3>
+				<p>Описание элемента 4. Используется flex для демонстрации.</p>
+			</div>
+			<div class="flex-item"> <img src="https://via.placeholder.com/80" alt="Элемент 5">
+				<h3>Элемент 5</h3>
+				<p>Описание элемента 5. Используется flex для демонстрации.</p>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
