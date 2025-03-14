@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с DOM</title>
+    <style>
+        .highlight { background-color: yellow; }
+    </style>
+</head>
+<body>
+    <h1 id="title">Работа с DOM</h1>
+    <button id="changeTextBtn">Изменить текст</button>
+    <button id="toggleClassBtn">Переключить класс</button>
+    <button id="addElementBtn">Добавить элемент</button>
+    <button id="removeElementBtn">Удалить элемент</button>
+    <ul id="list">
+        <li>Элемент 1</li>
+        <li>Элемент 2</li>
+        <li>Элемент 3</li>
+    </ul>
+
+    <script>
+        // Получение элементов
+        const title = document.getElementById("title");
+        const changeTextBtn = document.getElementById("changeTextBtn");
+        const toggleClassBtn = document.getElementById("toggleClassBtn");
+        const addElementBtn = document.getElementById("addElementBtn");
+        const removeElementBtn = document.getElementById("removeElementBtn");
+        const list = document.getElementById("list");
+
+        // Изменение текста элемента
+        changeTextBtn.addEventListener("click", () => {
+            title.textContent = "Текст изменён!";
+        });
+
+        // Переключение класса
+        toggleClassBtn.addEventListener("click", () => {
+            title.classList.toggle("highlight");
+        });
+
+        // Добавление нового элемента в список
+        addElementBtn.addEventListener("click", () => {
+            const newItem = document.createElement("li");
+            newItem.textContent = `Элемент ${list.children.length + 1}`;
+            list.appendChild(newItem);
+        });
+
+        // Удаление последнего элемента списка
+        removeElementBtn.addEventListener("click", () => {
+            if (list.children.length > 0) {
+                list.removeChild(list.lastElementChild);
+            }
+        });
+    </script>
+</body>
+</html>
