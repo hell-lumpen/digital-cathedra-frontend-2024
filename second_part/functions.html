@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #taskInput {
+            width: 60%;
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #taskInput:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        #addTask {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        #addTask:hover {
+            background-color: #0056b3;
+        }
+
+        #addTask:active {
+            transform: scale(0.98);
+        }
+
+        #taskList {
+            list-style: none;
+            padding: 0;
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .delete {
+            cursor: pointer;
+            color: red;
+            font-size: 20px;
+            transition: 0.2s;
+        }
+
+        .delete:hover {
+            color: darkred;
+            transform: scale(1.2);
+        }
+
+        #taskCount {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>📌 Task Manager</h1>
+    <input type="text" id="taskInput" placeholder="Введите задачу">
+    <button id="addTask">Добавить задачу</button>
+    <ul id="taskList"></ul>
+    <p>📊 Количество задач: <span id="taskCount">0</span></p>
+
+    <script>
+        // 1. FUNCTION DECLARATION (Объявление функции)
+        function updateTaskCount() {
+            document.getElementById('taskCount').textContent = tasks.length;
+        }
+
+        // 2. FUNCTION EXPRESSION (Функциональное выражение)
+        const createTaskElement = function(taskText) {
+            const li = document.createElement('li');
+            li.classList.add('task');
+            li.innerHTML = `${taskText} <span class="delete">❌</span>`;
+            return li;
+        };
+
+        // 3. ARROW FUNCTION (Стрелочная функция)
+        const addTask = () => {
+            const input = document.getElementById('taskInput');
+            const taskText = input.value.trim();
+
+            if (taskText === '') return;
+
+            tasks.push(taskText);
+            const taskElement = createTaskElement(taskText);
+            document.getElementById('taskList').appendChild(taskElement);
+
+            input.value = '';
+            updateTaskCount();
+        };
+
+        // 4. КОЛБЭК ФУНКЦИЯ (Функция высшего порядка)
+        document.getElementById('addTask').addEventListener('click', addTask);
+
+        // 5. ОБРАБОТЧИК СОБЫТИЙ С ЗАМЫКАНИЕМ
+        document.getElementById('taskList').addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete')) {
+                const taskText = event.target.parentElement.textContent.replace('❌', '').trim();
+                tasks = tasks.filter(task => task !== taskText);
+                event.target.parentElement.remove();
+                updateTaskCount();
+            }
+        });
+
+        let tasks = [];
+    </script>
+</body>
+</html>
