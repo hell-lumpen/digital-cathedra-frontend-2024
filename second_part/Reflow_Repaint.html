@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflow & Repaint Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .box {
+            width: 20px;
+            height: 20px;
+            margin: 2px;
+            display: inline-block;
+            background-color: lightblue;
+            border: 1px solid black;
+        }
+        #boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 2000px;
+            margin: auto;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: lightcoral !important;
+        }
+        .log {
+            margin-top: 10px;
+            font-weight: bold;
+            color: darkred;
+        }
+
+        .info {
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 14px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Демонстратор Reflow & Repaint</h1>
+    <button id="badAdd">❌ Плохое добавление (Reflow)</button>
+    <button id="goodAdd">✅ Оптимизированное добавление</button>
+    <button id="badChange">❌ Плохое изменение (Repaint)</button>
+    <button id="goodChange">✅ Оптимизированное изменение</button>
+
+    <div class="info">
+        <h3>Как пользоваться демонстратором?</h3>
+        <ul>
+            <li><b>Плохое добавление:</b> добавляет элементы по одному, вызывая множественные <i>Reflow</i>.</li>
+            <li><b>Оптимизированное добавление:</b> использует <code>documentFragment</code>, вставляя элементы за один раз.</li>
+            <li><b>Плохое изменение:</b> меняет <code>style.backgroundColor</code> у каждого элемента отдельно (много <i>Repaint</i>).</li>
+            <li><b>Оптимизированное изменение:</b> меняет класс контейнера разом (один <i>Repaint</i>).</li>
+        </ul>
+        <h3>Почему иногда оптимизированный метод может быть медленнее?</h3>
+        <ul>
+            <li>При первом запуске браузер рендерит всё с нуля, и разница заметна.</li>
+            <li>При повторном запуске браузер может использовать <b>кэш</b>, и очистка элементов становится дороже.</li>
+            <li>Оптимизированный метод <b>всегда выигрывает</b> на длинной дистанции, особенно если обновлять DOM в реальном проекте.</li>
+        </ul>
+    </div>
+
+    <div id="log" class="log"></div>
+    <div id="boxes" class="container"></div>
+
+    <script>
+        let container = document.getElementById("boxes");
+        let log = document.getElementById("log");
+
+        // ПЛОХОЙ МЕТОД: Добавление элементов по одному (много Reflow)
+        document.getElementById("badAdd").addEventListener("click", function() {
+            container.innerHTML = ""; // Очищаем контейнер
+            let start = performance.now();
+            for (let i = 0; i < 100000; i++) {
+                let div = document.createElement("div");
+                div.className = "box";
+                div.textContent = i + 1;
+                container.appendChild(div); // Каждый раз браузер пересчитывает layout (Reflow)
+            }
+            let end = performance.now();
+            log.innerHTML = `⏳ Плохое добавление: ${(end - start).toFixed(2)} ms`;
+        });
+
+        // ХОРОШИЙ МЕТОД: Использование documentFragment
+        document.getElementById("goodAdd").addEventListener("click", function() {
+            container.innerHTML = "";
+            let start = performance.now();
+            let fragment = document.createDocumentFragment();
+            for (let i = 0; i < 100000; i++) {
+                let div = document.createElement("div");
+                div.className = "box";
+                div.textContent = i + 1;
+                fragment.appendChild(div); // Добавляем в память, без Reflow
+            }
+            container.appendChild(fragment); // Вставляем разом
+            let end = performance.now();
+            log.innerHTML = `✅ Оптимизированное добавление: ${(end - start).toFixed(2)} ms`;
+        });
+
+        // ПЛОХОЙ МЕТОД: Изменение цвета (много Repaint)
+        document.getElementById("badChange").addEventListener("click", function() {
+            let start = performance.now();
+            document.querySelectorAll(".box").forEach(box => {
+                box.style.backgroundColor = "lightcoral"; // Каждое изменение вызывает Repaint
+            });
+            let end = performance.now();
+            log.innerHTML = `⏳ Плохое изменение цвета: ${(end - start).toFixed(2)} ms`;
+        });
+
+        // ХОРОШИЙ МЕТОД: Использование классов (Batch Update)
+        document.getElementById("goodChange").addEventListener("click", function() {
+            let start = performance.now();
+            container.classList.toggle("highlight"); // Меняем только класс, без массовых Repaint
+            let end = performance.now();
+            log.innerHTML = `✅ Оптимизированное изменение цвета: ${(end - start).toFixed(2)} ms`;
+        });
+    </script>
+
+</body>
+</html>
